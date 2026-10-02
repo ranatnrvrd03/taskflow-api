@@ -1,10 +1,15 @@
 const express = require('express');
 const app = express();
 const tasksRouter = require('./routes/tasks');
+const logger = require('./middleware/logger');
 const port = 7777;
+
+// Logger middleware'i uygulamaya ekle
+app.use(logger);
 
 // Gelen isteklerdeki JSON gövdesini okunabilir hale getiren middleware
 app.use(express.json());
+
 // /tasks ile başlayan tüm istekleri tasksRouter'a yönlendir
 app.use('/tasks', tasksRouter);
 
