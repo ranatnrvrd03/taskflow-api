@@ -24,4 +24,15 @@ function getAllTasks(req, res) {
   res.status(200).json(tasks);
 }
 
-module.exports = { createTask, getAllTasks };
+function getTaskById(req, res) {
+  const tasks = readTasks();
+  const task = tasks.find((t) => t.id === req.params.id);
+
+  if (!task) {
+    return res.status(404).json({ message: 'Görev bulunamadı' });
+  }
+
+  res.status(200).json(task);
+}
+
+module.exports = { createTask, getAllTasks, getTaskById };
