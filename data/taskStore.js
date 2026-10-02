@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const dataFilePath = path.join(__dirname, 'tasks.json');
 
+// tasks.json dosyasını okuyup içeriğini bir diziye çevirir
 function readTasks() {
   try {
     const data = fs.readFileSync(dataFilePath, 'utf8');
@@ -12,6 +13,7 @@ function readTasks() {
   }
 }
 
+// Verilen görev dizisini tasks.json dosyasına yazar
 function writeTasks(tasks) {
   try {
     fs.writeFileSync(dataFilePath, JSON.stringify(tasks, null, 2), 'utf8');
@@ -19,5 +21,6 @@ function writeTasks(tasks) {
     console.error('Görevler yazılırken hata oluştu:', err);
   }
 }
+
 
 module.exports = {readTasks, writeTasks};
