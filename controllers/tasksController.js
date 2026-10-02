@@ -37,5 +37,43 @@ function getTaskById(req, res) {
 
   res.status(200).json(task);
 }
+// PATCH /tasks/:id — id'si eşleşen görevi günceller
+function updateTask(req, res) {
+  const tasks = readTasks();
+  const taskIndex = tasks.findIndex((t) => t.id === req.params.id);
 
-module.exports = { createTask, getAllTasks, getTaskById };
+  if (taskIndex === -1) {
+    return res.status(404).json({ message: 'Görev bulunamadı' });
+  }
+
+  const { title, status, description, priority, assignee } = req.body;
+  tasks[taskIndex] = {
+    ...tasks[taskIndex],
+    title: title || tasks[taskIndex].title,
+    status: status || tasks[taskIndex].status,  
+    description: description || tasks[taskIndex].description,
+    priority: priority || tasks[taskIndex].priority,
+    assignee: assignee || tasks[taskIndex].assignee,
+    updatedAt: new Date().toISOString(),
+  };
+
+  writeTasks(tasks);
+  res.status(200).json(tasks[taskIndex]);
+}
+
+// DELETE /tasks/:id — id'si eşleşen görevi siler
+function deleteTask(req, res) {
+  const tasks = readTasks();
+  const taskIndex = tasks.findIndex((t) => t.id === req.params.id);
+
+  if (taskIndex === -1) {
+    return res.status(404).json({ message: 'Görev bulunamadı' });
+  }
+
+  tasks.splice(taskIndex, 1);
+  writeTasks(tasks);
+  res.status(204).send();
+  
+}
+
+module.exports = { createTask, getAllTasks, getTaskById, updateTask, deleteTask };

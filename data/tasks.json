@@ -1,14 +1,5 @@
 [
   {
-    "id": "01M3X6CX6JET0NDPGRNSAPP0K5",
-    "title": "İlk test görevi",
-    "description": "Postman üzerinden eklenen deneme görevi",
-    "status": "pending",
-    "priority": 2,
-    "assignee": "rana",
-    "createdAt": "2026-10-02T02:16:53.715Z"
-  },
-  {
     "id": "01M3Y5ZAP7199B9E9WTZC1Q6T6",
     "title": "Test görevi",
     "description": "Açıklama metni",

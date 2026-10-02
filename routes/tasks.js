@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { createTask, getAllTasks, getTaskById } = require('../controllers/tasksController')
+const { createTask, getAllTasks, getTaskById , updateTask, deleteTask} = require('../controllers/tasksController')
 
 // Yeni görev oluşturma
 router.post('/', createTask);
@@ -8,5 +8,8 @@ router.post('/', createTask);
 router.get('/', getAllTasks);
 // Tek bir görevin detayını getirme
 router.get('/:id', getTaskById);
-
+// Bir görevi güncelleme
+router.patch('/:id', updateTask);
+//Bir görevi silme
+router.delete('/:id', deleteTask);  
 module.exports = router;
